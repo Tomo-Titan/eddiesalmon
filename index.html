@@ -3,533 +3,460 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Eddie Salmon Cinematic Universe — A Stencil25 Studios Retrospective</title>
-<meta name="description" content="You survived the speech. Now witness the fully restored archive of Eddie Salmon's early cinematic work — including the legendary 'Evil Car'. By order of the Best Man." />
+<title>EddieTube — The Official Archive of Eddie Salmon</title>
+<meta name="description" content="You survived the speech. You typed it in mid-wedding. Welcome to EddieTube — the fully restored archive of Eddie Salmon's finest work: Evil Car, I'm Not Fat!, and Irish. Everything his mum tried to delete, live forever." />
 
-<!-- Open Graph / share preview -->
+<!-- Share preview -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="The Eddie Salmon Cinematic Universe" />
-<meta property="og:description" content="A Stencil25 Studios retrospective. Two films. One legend. Zero parental supervision. By order of the Best Man." />
+<meta property="og:title" content="EddieTube — The Official Eddie Salmon Archive" />
+<meta property="og:description" content="Three masterpieces. One legend. Zero parental supervision. By order of the Best Man." />
 <meta property="og:image" content="https://i.ytimg.com/vi/JpMAVFLZBUg/hqdefault.jpg" />
 <meta property="og:url" content="https://eddiesalmon.com" />
 <meta name="twitter:card" content="summary_large_image" />
 
-<!-- Clapperboard favicon -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E" />
+<!-- Red play-button favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff0000'/%3E%3Cpath d='M13 10l9 6-9 6z' fill='%23fff'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,600&family=Spectral:ital,wght@0,400;0,500;1,400&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet" />
 
 <style>
   :root{
-    --ink:#0d0a07;
-    --ink-2:#16110b;
-    --paper:#f4ead2;
-    --paper-dim:#cdbf9f;
-    --gold:#e6c378;
-    --gold-bright:#f7dca0;
-    --gold-deep:#b8902f;
-    --velvet:#8e1d16;
-    --velvet-bright:#c0392b;
-    --line:rgba(230,195,120,.22);
+    --red:#ff0000;
+    --red-dark:#c00000;
+    --red-deep:#990000;
+    --yellow:#ffd400;
+    --yellow-deep:#f5b500;
+    --page:#f6f6f6;
+    --card:#ffffff;
+    --ink:#0f0f0f;
+    --muted:#606060;
+    --muted-2:#909090;
+    --line:#e5e5e5;
+    --shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
+    --shadow-hi:0 6px 14px rgba(0,0,0,.10),0 22px 48px rgba(0,0,0,.14);
+    --font:"Roboto",Arial,sans-serif;
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
-
   html{scroll-behavior:smooth}
-
   body{
-    background:var(--ink);
-    color:var(--paper);
-    font-family:"Spectral",Georgia,serif;
-    line-height:1.6;
+    background:var(--page);
+    color:var(--ink);
+    font-family:var(--font);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
-    position:relative;
   }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
 
-  /* Warm spotlight + vignette atmosphere */
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
+  canvas#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+
+  /* ───────── Top bar ───────── */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;gap:16px;
+    background:#fff;border-bottom:1px solid var(--line);
+    padding:8px 18px;
+  }
+  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:900;font-size:22px;letter-spacing:-1px;flex:0 0 auto}
+  .logo .play{
+    width:30px;height:21px;background:var(--red);border-radius:6px;position:relative;
+    box-shadow:0 2px 6px rgba(255,0,0,.4);
+  }
+  .logo .play::after{content:"";position:absolute;top:50%;left:52%;transform:translate(-50%,-50%);
+    border-style:solid;border-width:5px 0 5px 9px;border-color:transparent transparent transparent #fff}
+  .logo .word{color:var(--ink)}
+  .logo .word b{color:var(--red)}
+
+  .search{flex:1;max-width:520px;margin:0 auto;display:flex;align-items:center}
+  .search input{
+    flex:1;border:1px solid #ccc;border-right:0;border-radius:999px 0 0 999px;
+    padding:9px 16px;font-family:var(--font);font-size:14px;outline:none;background:#fff;
+    box-shadow:inset 0 1px 2px rgba(0,0,0,.04);
+  }
+  .search input:focus{border-color:var(--red)}
+  .search button{
+    border:1px solid #ccc;border-left:0;background:#f5f5f5;border-radius:0 999px 999px 0;
+    padding:9px 18px;cursor:pointer;font-size:15px;color:var(--muted);
+  }
+  .search button:hover{background:#ececec}
+
+  .rec{margin-left:auto;display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.6px;flex:0 0 auto}
+  .recdot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(255,0,0,.5);animation:pulse 1.5s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,0,0,.5)}70%{box-shadow:0 0 0 8px rgba(255,0,0,0)}100%{box-shadow:0 0 0 0 rgba(255,0,0,0)}}
+  .navfish{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:18px;
+    background:radial-gradient(circle at 30% 28%,#ffe0e0,#ff9a9a);border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+
+  /* ───────── Page width ───────── */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+  /* ───────── Banner / hero ───────── */
+  .banner{
+    position:relative;overflow:hidden;color:#fff;
+    border-radius:0 0 18px 18px;
     background:
-      radial-gradient(120% 70% at 50% -10%, rgba(230,195,120,.16), transparent 55%),
-      radial-gradient(100% 80% at 50% 120%, rgba(142,29,22,.20), transparent 60%),
-      radial-gradient(140% 120% at 50% 40%, transparent 40%, rgba(0,0,0,.55) 100%);
+      radial-gradient(120% 160% at 85% -20%, #ff3b3b 0%, transparent 55%),
+      linear-gradient(135deg,var(--red) 0%,var(--red-dark) 60%,var(--red-deep) 100%);
+    padding:46px 26px 54px;
   }
+  .banner::before{ /* play-button watermark texture */
+    content:"";position:absolute;inset:0;opacity:.10;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Crect x='30' y='28' width='34' height='24' rx='7' fill='%23fff'/%3E%3Cpath d='M43 34l10 6-10 6z' fill='%23ff0000'/%3E%3C/svg%3E");
+    background-size:90px 90px;
+  }
+  .banner .inner{position:relative;max-width:1080px;margin:0 auto;padding:0 4px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+    background:var(--yellow);color:#3a2a00;padding:5px 11px;border-radius:999px}
+  .banner h1{font-size:clamp(28px,6.4vw,54px);line-height:1.02;margin:16px 0 10px;font-weight:900;letter-spacing:-1.5px;max-width:18ch;
+    text-shadow:0 2px 0 rgba(0,0,0,.12)}
+  .banner h1 .hl{color:var(--yellow)}
+  .banner p{margin:0;font-size:clamp(15px,2.6vw,19px);max-width:54ch;opacity:.96}
 
-  /* Film grain overlay */
-  body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:60;
-    pointer-events:none;
-    opacity:.05;
-    mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* ───────── Channel header ───────── */
+  .channel{
+    display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+    margin:-28px auto 0;position:relative;z-index:2;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 22px;box-shadow:var(--shadow);
   }
+  .avatar{flex:0 0 auto;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:50px;
+    background:radial-gradient(circle at 30% 28%,#ffe0e0,#ff8a8a);border:4px solid #fff;box-shadow:0 0 0 1px var(--line),0 8px 20px rgba(255,0,0,.18)}
+  .chinfo{flex:1;min-width:240px}
+  .chinfo h2{font-size:26px;font-weight:900;letter-spacing:-.5px;display:inline-flex;align-items:center;gap:7px}
+  .verified{width:16px;height:16px;border-radius:50%;background:var(--muted-2);display:inline-grid;place-items:center;color:#fff;font-size:10px;font-weight:900}
+  .handle{color:var(--muted);font-size:14px;font-weight:500;margin:3px 0}
+  .stats{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 4px}
+  .stats b{color:var(--ink)}
+  .bio{color:#444;font-size:13.5px;max-width:62ch;margin-top:6px}
+  .chcta{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .subbtn{
+    background:var(--red);color:#fff;border:0;border-radius:999px;padding:11px 22px;
+    font-family:var(--font);font-weight:900;font-size:14px;cursor:pointer;letter-spacing:.2px;
+    display:inline-flex;align-items:center;gap:8px;transition:transform .15s,background .2s,box-shadow .2s;
+    box-shadow:0 6px 16px rgba(255,0,0,.28);
+  }
+  .subbtn:hover{background:var(--red-dark)}
+  .subbtn:active{transform:translateY(1px)}
+  .subbtn.done{background:#e9e9e9;color:#0f0f0f;box-shadow:none}
+  .bell{background:#f2f2f2;color:#0f0f0f;border:0;border-radius:999px;padding:11px 16px;font-size:14px;font-weight:700;cursor:pointer}
 
-  .stage{position:relative;z-index:1}
+  /* ───────── Tabs ───────── */
+  .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:26px 2px 4px;overflow-x:auto}
+  .tabs a{padding:11px 2px;font-size:14px;font-weight:700;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent}
+  .tabs a.active{color:var(--ink);border-bottom-color:var(--ink)}
+  .tabs a:hover{color:var(--ink)}
 
-  /* ---------- Top marquee ticker ---------- */
-  .ticker{
-    border-bottom:1px solid var(--line);
-    background:linear-gradient(180deg,#1a130b,#0d0a07);
-    overflow:hidden;
-    position:relative;
-  }
-  .bulbs{
-    display:flex;
-    justify-content:center;
-    gap:14px;
-    padding:8px 0 4px;
-  }
-  .bulbs i{
-    width:7px;height:7px;border-radius:50%;
-    background:var(--gold-bright);
-    box-shadow:0 0 8px var(--gold),0 0 14px var(--gold-deep);
-    animation:blink 1.4s infinite;
-  }
-  .bulbs i:nth-child(even){animation-delay:.7s}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  /* ───────── Section label ───────── */
+  .seclabel{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;margin:30px 2px 16px;letter-spacing:-.3px}
+  .seclabel .tag{font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;background:var(--yellow);color:#3a2a00;padding:3px 9px;border-radius:6px}
 
-  .ticker-track{
-    display:flex;
-    white-space:nowrap;
-    will-change:transform;
-    animation:slide 28s linear infinite;
-    padding:6px 0 10px;
-  }
-  .ticker-track span{
-    font-family:"Bebas Neue",sans-serif;
-    letter-spacing:.28em;
-    font-size:.95rem;
-    color:var(--gold);
-    padding:0 1.4rem;
-  }
-  .ticker-track span::after{content:"★";color:var(--velvet-bright);margin-left:2.8rem;opacity:.8}
-  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* ───────── Video grid ───────── */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
 
-  /* ---------- Layout shell ---------- */
-  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  .video{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+  .video:hover{transform:translateY(-4px);box-shadow:var(--shadow-hi)}
 
-  /* ---------- Hero ---------- */
-  .hero{
-    text-align:center;
-    padding:64px 0 30px;
-    position:relative;
+  .thumb{
+    display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;margin:0;cursor:pointer;
+    position:relative;background:#000 center/cover no-repeat;overflow:hidden;
   }
-  .studio{
-    font-family:"Stardos Stencil",monospace;
-    font-weight:700;
-    letter-spacing:.12em;
-    color:var(--paper-dim);
-    font-size:.92rem;
-    text-transform:uppercase;
-  }
-  .studio b{color:var(--gold)}
-  .presents{
-    display:block;
-    font-family:"Spectral",serif;
-    font-style:italic;
-    color:var(--paper-dim);
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    font-size:.7rem;
-    margin-top:6px;
-  }
+  .thumb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 40%,rgba(0,0,0,.28));opacity:0;transition:opacity .25s}
+  .thumb:hover::before{opacity:1}
+  .thumb .dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.82);color:#fff;font-size:12px;font-weight:700;
+    padding:2px 6px;border-radius:5px;letter-spacing:.3px}
+  .thumb .pbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);
+    width:66px;height:46px;background:rgba(255,0,0,.92);border-radius:13px;opacity:.92;transition:transform .25s,opacity .25s;
+    box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .thumb .pbtn::after{content:"";position:absolute;top:50%;left:53%;transform:translate(-50%,-50%);
+    border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff}
+  .thumb:hover .pbtn{transform:translate(-50%,-50%) scale(1);opacity:1;background:var(--red)}
+  .thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
-  h1.title{
-    font-family:"Bebas Neue",sans-serif;
-    font-weight:400;
-    line-height:.92;
-    letter-spacing:.01em;
-    margin:18px auto 4px;
-    font-size:clamp(3.1rem,11vw,7.4rem);
-    color:var(--gold-bright);
-    text-shadow:0 2px 0 var(--gold-deep),0 0 38px rgba(230,195,120,.30);
-    max-width:14ch;
-  }
-  h1.title .uni{display:block;color:var(--paper)}
+  .vinfo{padding:13px 14px 16px}
+  .vtop{display:flex;gap:11px}
+  .vav{flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:18px;
+    background:radial-gradient(circle at 30% 28%,#ffe0e0,#ff9a9a)}
+  .vtitle{font-size:15.5px;font-weight:700;line-height:1.3;margin-bottom:3px;color:var(--ink)}
+  .vchan{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px}
+  .vchan .verified{width:13px;height:13px;font-size:8px}
+  .vmeta{font-size:12.5px;color:var(--muted)}
+  .vcap{font-size:13px;color:#444;margin:10px 0 12px}
+  .watch{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--red);
+    border:1px solid var(--line);border-radius:999px;padding:7px 13px;transition:background .2s,border-color .2s}
+  .watch:hover{background:#fff5f5;border-color:#ffd0d0}
 
-  .rule{
-    display:flex;align-items:center;justify-content:center;gap:14px;
-    color:var(--gold-deep);margin:14px 0 22px;
-  }
-  .rule::before,.rule::after{content:"";height:1px;width:min(120px,22vw);background:linear-gradient(90deg,transparent,var(--gold-deep))}
-  .rule::after{background:linear-gradient(90deg,var(--gold-deep),transparent)}
-  .rule span{font-family:"Bebas Neue",sans-serif;letter-spacing:.3em;font-size:.85rem;color:var(--gold)}
+  /* ───────── Pinned comment ───────── */
+  .pinned{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--yellow);
+    border-radius:12px;padding:16px 18px;margin:26px 2px 0;box-shadow:var(--shadow)}
+  .pinned .pav{flex:0 0 auto;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:20px;
+    background:radial-gradient(circle at 30% 28%,#ffe9c7,#ffcf86)}
+  .pinned .ptag{font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
+  .pinned .pname{font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+  .pinned .pname span{font-weight:400;color:var(--muted);font-size:12.5px}
+  .pinned .ptext{font-size:14px;margin:3px 0 6px}
+  .pinned .pacts{font-size:12.5px;color:var(--muted);display:flex;gap:16px}
 
-  .dek{
-    max-width:54ch;margin:0 auto;
-    font-size:clamp(1.02rem,2.4vw,1.22rem);
-    color:var(--paper);
-  }
-  .dek em{color:var(--gold-bright);font-style:italic}
+  /* ───────── Up next ───────── */
+  .recommended{display:grid;gap:10px;margin-top:6px}
+  .rec-row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:11px 14px;transition:background .15s}
+  .rec-row:hover{background:#fafafa}
+  .rec-thumb{flex:0 0 auto;width:88px;height:50px;border-radius:8px;display:grid;place-items:center;font-size:22px;
+    background:linear-gradient(135deg,#1f1f1f,#3a3a3a);color:#fff;position:relative;overflow:hidden}
+  .rec-thumb .mini{position:absolute;right:5px;bottom:4px;font-size:9px;font-weight:700;background:rgba(0,0,0,.7);color:#fff;padding:1px 4px;border-radius:3px}
+  .rec-row b{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+  .rec-row span{font-size:12px;color:var(--muted)}
 
-  .badges{
-    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
-    margin:26px auto 0;
-  }
-  .badge{
-    border:1px solid var(--line);
-    border-radius:2px;
-    padding:7px 13px;
-    font-family:"Bebas Neue",sans-serif;
-    letter-spacing:.16em;
-    font-size:.82rem;
-    color:var(--paper-dim);
-    background:rgba(230,195,120,.04);
-  }
-  .badge b{color:var(--gold)}
+  /* ───────── Sign off ───────── */
+  .signoff{text-align:center;border-radius:18px;padding:42px 24px;margin:38px 2px 26px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%)}
+  .signoff::before{content:"";position:absolute;inset:0;opacity:.12;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ctext y='52' font-size='44'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E");background-size:80px 80px}
+  .signoff .small{position:relative;font-size:14px;opacity:.9;font-weight:500}
+  .signoff h2{position:relative;font-size:clamp(24px,5vw,36px);font-weight:900;letter-spacing:-1px;margin:8px 0 12px}
+  .signoff .heart{position:relative;font-size:30px;margin-bottom:10px}
+  .signoff .congrats{position:relative;font-size:clamp(15px,3vw,18px);font-weight:700}
+  .signoff .congrats b{background:var(--yellow);color:#3a2a00;padding:1px 9px;border-radius:6px}
 
-  /* ---------- Section heading ---------- */
-  .sec-head{text-align:center;margin:70px 0 34px}
-  .sec-head h2{
-    font-family:"Bebas Neue",sans-serif;font-weight:400;
-    font-size:clamp(2.2rem,6vw,3.4rem);letter-spacing:.04em;color:var(--paper);
-  }
-  .sec-head p{font-style:italic;color:var(--paper-dim)}
+  /* ───────── Footer ───────── */
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:14px 18px 56px;max-width:680px;margin:0 auto}
+  footer a{color:var(--red);font-weight:700}
 
-  /* ---------- Film cards ---------- */
-  .films{display:flex;flex-direction:column;gap:46px}
-  .film{
-    display:grid;
-    grid-template-columns:1.15fr 1fr;
-    gap:30px;
-    align-items:center;
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:24px;
-    background:linear-gradient(160deg,rgba(255,255,255,.025),rgba(0,0,0,.25));
-    position:relative;
-  }
-  .film:nth-child(even){grid-template-columns:1fr 1.15fr}
-  .film:nth-child(even) .film-meta{order:-1}
-  .film::before{
-    content:"";position:absolute;inset:6px;border:1px solid rgba(230,195,120,.10);
-    border-radius:3px;pointer-events:none;
-  }
-
-  /* video facade */
-  .player{
-    position:relative;
-    aspect-ratio:16/9;
-    border-radius:3px;
-    overflow:hidden;
-    background:#000 center/cover no-repeat;
-    cursor:pointer;
-    box-shadow:0 18px 40px rgba(0,0,0,.55);
-    border:1px solid rgba(230,195,120,.25);
-  }
-  .player::after{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(circle at 50% 50%,transparent 30%,rgba(0,0,0,.5));
-    transition:opacity .3s;
-  }
-  .player .play{
-    position:absolute;inset:0;display:grid;place-items:center;z-index:2;
-  }
-  .player .play b{
-    width:74px;height:74px;border-radius:50%;
-    background:rgba(13,10,7,.62);
-    border:2px solid var(--gold-bright);
-    display:grid;place-items:center;
-    box-shadow:0 0 26px rgba(230,195,120,.45);
-    transition:transform .25s,background .25s;
-  }
-  .player .play b::before{
-    content:"";margin-left:5px;
-    border-style:solid;border-width:13px 0 13px 22px;
-    border-color:transparent transparent transparent var(--gold-bright);
-  }
-  .player:hover .play b{transform:scale(1.1);background:var(--velvet)}
-  .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-
-  .reel-no{
-    font-family:"Bebas Neue",sans-serif;letter-spacing:.22em;
-    color:var(--velvet-bright);font-size:.9rem;
-  }
-  h3.film-title{
-    font-family:"Playfair Display",serif;font-weight:700;
-    font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.02;
-    color:var(--gold-bright);margin:4px 0 8px;
-  }
-  .credits{
-    font-size:.84rem;color:var(--paper-dim);letter-spacing:.02em;
-    text-transform:uppercase;margin-bottom:16px;
-  }
-  .quote{
-    font-family:"Playfair Display",serif;font-style:italic;
-    font-size:1.12rem;color:var(--paper);
-    border-left:2px solid var(--gold-deep);padding-left:14px;margin:0 0 6px;
-  }
-  .quote-by{font-size:.82rem;color:var(--gold);letter-spacing:.04em;margin-bottom:16px;display:block}
-  .synopsis{font-size:.98rem;color:var(--paper-dim);margin-bottom:20px}
-
-  .stars{color:var(--gold-bright);letter-spacing:.18em;font-size:1.15rem;margin-bottom:4px}
-  .score{font-family:"Bebas Neue",sans-serif;letter-spacing:.14em;color:var(--paper-dim);font-size:.82rem;margin-bottom:18px}
-
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;
-    font-family:"Bebas Neue",sans-serif;letter-spacing:.16em;font-size:1rem;
-    background:var(--velvet);color:var(--gold-bright);
-    border:1px solid var(--velvet-bright);
-    padding:12px 22px;border-radius:3px;text-decoration:none;
-    transition:transform .2s,background .2s,box-shadow .2s;
-  }
-  .btn:hover{background:var(--velvet-bright);color:#fff;transform:translateY(-2px);box-shadow:0 10px 24px rgba(192,57,43,.35)}
-  .btn.gold{background:transparent;color:var(--gold-bright);border-color:var(--gold-deep)}
-  .btn.gold:hover{background:rgba(230,195,120,.12);box-shadow:0 10px 24px rgba(230,195,120,.2)}
-
-  /* ---------- Special features / trivia ---------- */
-  .features{
-    margin:80px 0 0;border:1px dashed var(--line);border-radius:5px;
-    padding:34px 30px;background:rgba(0,0,0,.22);
-  }
-  .features h2{
-    font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.06em;
-    font-size:clamp(1.8rem,5vw,2.6rem);color:var(--paper);text-align:center;margin-bottom:4px;
-  }
-  .features .sub{text-align:center;font-style:italic;color:var(--paper-dim);margin-bottom:26px}
-  .trivia{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  .trivia li{
-    list-style:none;display:flex;gap:14px;align-items:flex-start;
-    padding:16px;border:1px solid var(--line);border-radius:3px;
-    background:linear-gradient(160deg,rgba(255,255,255,.025),transparent);
-  }
-  .trivia .ico{font-size:1.6rem;line-height:1;filter:drop-shadow(0 0 6px rgba(230,195,120,.4))}
-  .trivia b{display:block;font-family:"Bebas Neue",sans-serif;letter-spacing:.12em;color:var(--gold);font-size:1.02rem;margin-bottom:2px}
-  .trivia p{font-size:.94rem;color:var(--paper-dim)}
-
-  /* ---------- Ticket / CTA ---------- */
-  .ticket{
-    margin:72px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:0;
-    border:1px solid var(--gold-deep);border-radius:6px;overflow:hidden;
-    background:
-      radial-gradient(circle at 0 50%,var(--ink) 11px,transparent 12px) left,
-      radial-gradient(circle at 100% 50%,var(--ink) 11px,transparent 12px) right;
-    background-repeat:no-repeat;
-    background-color:#1b130b;
-  }
-  .ticket .stub{
-    flex:0 0 auto;writing-mode:vertical-rl;text-orientation:mixed;
-    background:var(--velvet);color:var(--gold-bright);
-    font-family:"Bebas Neue",sans-serif;letter-spacing:.4em;font-size:1.3rem;
-    padding:22px 14px;border-right:2px dashed rgba(13,10,7,.6);
-    align-self:stretch;display:flex;align-items:center;justify-content:center;
-  }
-  .ticket .body{flex:1;min-width:260px;padding:28px 30px}
-  .ticket h2{font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.05em;font-size:1.9rem;color:var(--gold-bright)}
-  .ticket p{color:var(--paper-dim);margin:6px 0 18px;max-width:44ch}
-
-  /* ---------- Footer ---------- */
-  footer{
-    text-align:center;padding:60px 22px 70px;margin-top:64px;
-    border-top:1px solid var(--line);color:var(--paper-dim);
-  }
-  footer .dom{font-family:"Bebas Neue",sans-serif;letter-spacing:.3em;color:var(--gold);font-size:1.5rem}
-  footer .fine{font-size:.86rem;font-style:italic;margin:14px auto 0;max-width:48ch}
-  footer .sign{margin-top:18px;color:var(--gold-bright);font-family:"Playfair Display",serif;font-style:italic}
-
-  /* ---------- Confetti ---------- */
-  #confetti{position:fixed;inset:0;z-index:50;pointer-events:none}
-
-  /* ---------- Entrance animation ---------- */
-  .rise{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  /* ───────── Entrance ───────── */
+  .rise{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
   @keyframes rise{to{opacity:1;transform:none}}
-
-  /* ---------- Responsive ---------- */
-  @media(max-width:780px){
-    .film,.film:nth-child(even){grid-template-columns:1fr}
-    .film:nth-child(even) .film-meta{order:0}
-    .trivia{grid-template-columns:1fr}
-    .hero{padding-top:46px}
-  }
 
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;scroll-behavior:auto}
     .rise{opacity:1;transform:none}
+    canvas#confetti{display:none}
+  }
+  :focus-visible{outline:3px solid #1a73e8;outline-offset:2px;border-radius:6px}
+
+  @media(max-width:680px){
+    .search{display:none}
+    .banner{padding:34px 18px 46px}
+    .avatar{width:78px;height:78px;font-size:40px}
   }
 </style>
 </head>
 <body>
 <canvas id="confetti"></canvas>
 
-<div class="stage">
+<!-- Top bar -->
+<header class="topbar">
+  <a class="logo" href="#"><span class="play"></span><span class="word">Eddie<b>Tube</b></span></a>
+  <form class="search" onsubmit="return false">
+    <input type="text" placeholder="Search the incidents…" aria-label="Search" />
+    <button type="submit" aria-label="Search">🔍</button>
+  </form>
+  <span class="rec"><span class="recdot"></span>REC · ARCHIVE LIVE</span>
+  <span class="navfish" aria-hidden="true">🐟</span>
+</header>
 
-  <!-- Marquee ticker -->
-  <div class="ticker">
-    <div class="bulbs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="ticker-track">
-      <span>Now Showing</span><span>One Night Only</span><span>Admit One</span><span>By Order of the Best Man</span><span>Strictly No Lego Past This Point</span>
-      <span>Now Showing</span><span>One Night Only</span><span>Admit One</span><span>By Order of the Best Man</span><span>Strictly No Lego Past This Point</span>
+<!-- Banner / greeting -->
+<section class="banner">
+  <div class="inner">
+    <span class="eyebrow rise" style="animation-delay:.05s">📺 Broadcast Yourself™ — and he did. Relentlessly.</span>
+    <h1 class="rise" style="animation-delay:.15s">So. You actually <span class="hl">typed it in.</span></h1>
+    <p class="rise" style="animation-delay:.28s">Mid-wedding. While he's standing right there. Outstanding. Welcome to the official archive — everything Anita tried to delete, restored and uploaded against his will by the Best Man.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- Channel header -->
+  <section class="channel rise" style="animation-delay:.34s">
+    <div class="avatar" aria-hidden="true">🐟</div>
+    <div class="chinfo">
+      <h2>Eddie Salmon <span class="verified" title="Verified legend">✓</span></h2>
+      <div class="handle">@eddiesalmon · also known as Stencil25 Studios</div>
+      <div class="stats"><span><b>3</b> masterpieces</span><span><b>4</b> subscribers (his mum, three times)</span><span><b>14</b> A&amp;E visits</span><span>Joined 2009</span></div>
+      <p class="bio">Child actor. Stuntman. Lego connoisseur. Professional fighter of stationary objects. According to the doctors who sat the family down, the only thing ever actually wrong in that house. Twenty years on — somehow fine.</p>
+      <div class="chcta">
+        <button class="subbtn" id="sub" type="button">Subscribe</button>
+        <button class="bell" type="button" title="Notifications" onclick="celebrate(110)">🔔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <a href="#works" class="active">Videos</a>
+    <a href="#works">Shorts</a>
+    <a href="#works">Live</a>
+    <a href="#works">Playlists</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <!-- The Complete Works -->
+  <div class="seclabel" id="works">📼 The Complete Works <span class="tag">Remastered</span></div>
+
+  <div class="grid">
+
+    <!-- Evil Car -->
+    <article class="video rise" style="animation-delay:.1s">
+      <button class="thumb" data-id="JpMAVFLZBUg" data-title="Evil Car"
+        style="background-image:url('https://i.ytimg.com/vi/JpMAVFLZBUg/hqdefault.jpg')" aria-label="Play: Evil Car">
+        <span class="pbtn"></span><span class="dur">0:53</span>
+      </button>
+      <div class="vinfo">
+        <div class="vtop">
+          <div class="vav" aria-hidden="true">🐟</div>
+          <div>
+            <div class="vtitle">Evil Car</div>
+            <div class="vchan">Eddie Salmon <span class="verified">✓</span></div>
+            <div class="vmeta">2,341,008 views · 14 years ago</div>
+          </div>
+        </div>
+        <p class="vcap">The plastic-car fight the speech warned you about. Method acting. The car declined to comment.</p>
+        <a class="watch" href="https://www.youtube.com/watch?v=JpMAVFLZBUg" target="_blank" rel="noopener">▶ Watch on YouTube ↗</a>
+      </div>
+    </article>
+
+    <!-- I'm Not Fat! -->
+    <article class="video rise" style="animation-delay:.2s">
+      <button class="thumb" data-id="x7eRDTIRbe8" data-title="I'm Not Fat!"
+        style="background-image:url('https://i.ytimg.com/vi/x7eRDTIRbe8/hqdefault.jpg')" aria-label="Play: I'm Not Fat!">
+        <span class="pbtn"></span><span class="dur">0:38</span>
+      </button>
+      <div class="vinfo">
+        <div class="vtop">
+          <div class="vav" aria-hidden="true">🐟</div>
+          <div>
+            <div class="vtitle">"I'm Not Fat!"</div>
+            <div class="vchan">Eddie Salmon <span class="verified">✓</span></div>
+            <div class="vmeta">1,884,200 views · 13 years ago</div>
+          </div>
+        </div>
+        <p class="vcap">A bold thesis, defended at considerable volume. He protests. We nod. We dare not do otherwise.</p>
+        <a class="watch" href="https://www.youtube.com/watch?v=x7eRDTIRbe8" target="_blank" rel="noopener">▶ Watch on YouTube ↗</a>
+      </div>
+    </article>
+
+    <!-- Irish -->
+    <article class="video rise" style="animation-delay:.3s">
+      <button class="thumb" data-id="SzK627z6HCM" data-title="Irish"
+        style="background-image:url('https://i.ytimg.com/vi/SzK627z6HCM/hqdefault.jpg')" aria-label="Play: Irish">
+        <span class="pbtn"></span><span class="dur">1:12</span>
+      </button>
+      <div class="vinfo">
+        <div class="vtop">
+          <div class="vav" aria-hidden="true">🐟</div>
+          <div>
+            <div class="vtitle">Irish</div>
+            <div class="vchan">Eddie Salmon <span class="verified">✓</span></div>
+            <div class="vmeta">1,103,557 views · 13 years ago</div>
+          </div>
+        </div>
+        <p class="vcap">An accent. A full commitment. Ireland is yet to release a statement. Bafta-snubbed, frankly.</p>
+        <a class="watch" href="https://www.youtube.com/watch?v=SzK627z6HCM" target="_blank" rel="noopener">▶ Watch on YouTube ↗</a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Pinned comment -->
+  <div class="pinned">
+    <div class="pav" aria-hidden="true">👩</div>
+    <div>
+      <div class="ptag">📌 Pinned by Eddie Salmon</div>
+      <div class="pname">Anita Salmon <span>· his lovely mother</span></div>
+      <p class="ptext">“Yeah… of course he did.”</p>
+      <div class="pacts">👍 1.2K &nbsp;·&nbsp; 💬 Reply &nbsp;·&nbsp; ❤️ liked by Eddie Salmon</div>
     </div>
   </div>
 
-  <main class="wrap">
+  <!-- Up Next -->
+  <div class="seclabel" id="about">Up Next</div>
+  <div class="recommended">
+    <div class="rec-row"><div class="rec-thumb">🧱<span class="mini">3:09</span></div><div><b>How To Eat Lego Safely (Tutorial)</b><span>0 useful tips · age-restricted by Anita</span></div></div>
+    <div class="rec-row"><div class="rec-thumb">🏥<span class="mini">14:00</span></div><div><b>A&amp;E Loyalty Card: Was It Worth It?</b><span>Eddie reviews all 14 visits · brutally honest</span></div></div>
+    <div class="rec-row"><div class="rec-thumb">🥊<span class="mini">∞</span></div><div><b>Fighting Inanimate Objects: A Retrospective</b><span>feature-length · the objects won</span></div></div>
+    <div class="rec-row"><div class="rec-thumb">🎬<span class="mini">LIVE</span></div><div><b>Mum Reacts: "yeah, of course he did"</b><span>full series · all 200 episodes</span></div></div>
+  </div>
 
-    <!-- Hero -->
-    <section class="hero">
-      <p class="studio rise" style="animation-delay:.05s"><b>Stencil25</b> Studios<span class="presents">proudly presents</span></p>
-      <h1 class="title rise" style="animation-delay:.15s">The Eddie Salmon<span class="uni">Cinematic Universe</span></h1>
-      <div class="rule rise" style="animation-delay:.3s"><span>Fully Restored · Mostly</span></div>
-      <p class="dek rise" style="animation-delay:.4s">You survived the speech. You typed the address. There is <em>no going back now.</em> Welcome to the restored archive of the films that once made a GP surgery sit Anita down for a quiet word.</p>
-      <div class="badges rise" style="animation-delay:.55s">
-        <span class="badge"><b>Genre:</b> Documentary · Action · Concern</span>
-        <span class="badge"><b>Rated 18:</b> Contains Lego</span>
-        <span class="badge"><b>Est.</b> One questionable childhood</span>
-      </div>
-    </section>
-
-    <!-- The collection -->
-    <div class="sec-head">
-      <h2>The Collection</h2>
-      <p>Two films. One legend. Zero parental supervision.</p>
-    </div>
-
-    <section class="films">
-
-      <!-- Film 1 -->
-      <article class="film">
-        <div class="player" data-id="JpMAVFLZBUg" data-title="Evil Car"
-             style="background-image:url('https://i.ytimg.com/vi/JpMAVFLZBUg/hqdefault.jpg')">
-          <div class="play"><b></b></div>
-        </div>
-        <div class="film-meta">
-          <span class="reel-no">Feature Presentation No. 01</span>
-          <h3 class="film-title">Evil Car</h3>
-          <p class="credits">Dir. E. Salmon · Action / Survival · Filmed on location: the driveway</p>
-          <p class="quote">A boy. A toy. A plastic car that simply would not die. Bafta-snubbed, frankly.</p>
-          <span class="quote-by">— The Best Man, twenty years a witness</span>
-          <p class="synopsis">The film the speech warned you about. Watch Eddie wage open war on a vehicle that never once fought back.</p>
-          <div class="stars">★★★★★</div>
-          <div class="score">98% · Rotten Carrots — “Certified Concerning”</div>
-          <a class="btn" href="https://www.youtube.com/watch?v=JpMAVFLZBUg" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-      </article>
-
-      <!-- Film 2 -->
-      <article class="film">
-        <div class="player" data-id="x7eRDTIRbe8" data-title="I'm not fat!"
-             style="background-image:url('https://i.ytimg.com/vi/x7eRDTIRbe8/hqdefault.jpg')">
-          <div class="play"><b></b></div>
-        </div>
-        <div class="film-meta">
-          <span class="reel-no">Feature Presentation No. 02</span>
-          <h3 class="film-title">“I'm Not Fat!”</h3>
-          <p class="credits">Dir. E. Salmon · Drama / Denial · A bold statement, loudly defended</p>
-          <p class="quote">He protests. We nod. We dare not do otherwise.</p>
-          <span class="quote-by">— Anita Salmon, his lovely mother</span>
-          <p class="synopsis">A tender, feature-length rebuttal to an accusation no one is entirely sure was ever made.</p>
-          <div class="stars">★★★★★</div>
-          <div class="score">100% · The Academy — “A career-defining objection”</div>
-          <a class="btn" href="https://www.youtube.com/watch?v=x7eRDTIRbe8" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- Special features -->
-    <section class="features">
-      <h2>From the Best Man's Files</h2>
-      <p class="sub">Special Features · Behind the scenes · Director's commentary unavailable (he's at his own wedding)</p>
-      <ul class="trivia">
-        <li><span class="ico">🧱</span><div><b>Method acting</b><p>Ate the props. The props were Lego. The doctors were notified.</p></div></li>
-        <li><span class="ico">🩺</span><div><b>The Welfare Check</b><p>So accident-prone the surgery sat the family down — just to check everything was alright at home. It was. The only thing wrong in that house was Eddie.</p></div></li>
-        <li><span class="ico">🎬</span><div><b>Twenty Years of Footage</b><p>Not one single frame of self-preservation has ever been recovered.</p></div></li>
-        <li><span class="ico">💭</span><div><b>Anita's One-Line Review</b><p>“Yeah… of course he did.” — the entire genre, summarised by his mother.</p></div></li>
-      </ul>
-    </section>
-
-    <!-- Ticket CTA -->
-    <section class="ticket">
-      <div class="stub">Admit One</div>
-      <div class="body">
-        <h2>The Full Back-Catalogue</h2>
-        <p>There is, regrettably, more. The complete works of a young auteur live on the original channel — Stencil25.</p>
-        <a class="btn gold" href="https://www.youtube.com/@stencil25" target="_blank" rel="noopener">★ Visit Stencil25 on YouTube</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="dom">eddiesalmon.com</div>
-    <p class="fine">Curated, restored and erected by the Best Man. No plastic cars were harmed in the making of this website. (Several were.)</p>
-    <p class="sign">Congratulations, Eddie — here's to twenty more years of you being absolutely fine.</p>
-  </footer>
+  <!-- Sign off -->
+  <section class="signoff">
+    <div class="small">Anyway.</div>
+    <h2>He turned out alright in the end.</h2>
+    <div class="heart">❤️</div>
+    <div class="congrats">Congratulations <b>Eddie &amp; Laura</b> — from everyone who watched it happen.</div>
+  </section>
 
 </div>
 
+<footer>
+  Curated, against his will, by the Best Man · <a href="https://www.youtube.com/@stencil25" target="_blank" rel="noopener">Subscribe to Stencil25 ↗</a><br />
+  No salmon were harmed in the making of this archive. Eddie was. Frequently.
+</footer>
+
 <script>
-  // ---- Click-to-play YouTube facade ----
-  document.querySelectorAll('.player').forEach(function(p){
-    p.addEventListener('click', function(){
-      var id = p.getAttribute('data-id');
-      var title = p.getAttribute('data-title') || 'video';
+  // ── Click-to-play: swap thumbnail facade for the real embed ──
+  document.querySelectorAll('.thumb').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-id');
       var f = document.createElement('iframe');
-      f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
-      f.title = title;
+      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      f.title = btn.getAttribute('data-title') || 'Eddie Salmon';
       f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       f.allowFullscreen = true;
-      p.innerHTML = '';
-      p.style.cursor = 'default';
-      p.appendChild(f);
+      btn.innerHTML = '';
+      btn.style.cursor = 'default';
+      btn.appendChild(f);
     });
   });
 
-  // ---- Confetti burst (gold / cream / velvet) ----
+  // ── Subscribe interaction ──
+  var sub = document.getElementById('sub');
+  sub.addEventListener('click', function(){
+    if (sub.classList.contains('done')) return;
+    sub.classList.add('done');
+    sub.innerHTML = 'Subscribed 🔔';
+    celebrate(150);
+  });
+
+  // ── Confetti (red / yellow / white) ──
   (function(){
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var cv = document.getElementById('confetti');
-    var ctx = cv.getContext('2d');
-    var W, H, parts = [], colors = ['#e6c378','#f7dca0','#f4ead2','#c0392b','#b8902f'];
-    function size(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canvas = document.getElementById('confetti');
+    var ctx = canvas.getContext('2d');
+    var W, H, pieces = [], running = false;
+    var colors = ['#ff0000','#cc0000','#ffd400','#f5b500','#ffffff','#ffffff'];
+    function size(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
     size(); addEventListener('resize', size);
 
-    for (var i = 0; i < 150; i++){
-      parts.push({
-        x: W/2 + (Math.random()-.5)*W*0.5,
-        y: -20 - Math.random()*H*0.3,
-        r: 4 + Math.random()*6,
-        c: colors[(Math.random()*colors.length)|0],
-        vx: (Math.random()-.5)*4,
-        vy: 2 + Math.random()*4,
-        rot: Math.random()*6.28,
-        vr: (Math.random()-.5)*0.3,
-        sway: Math.random()*6.28
-      });
+    function burst(n){
+      for (var i=0;i<n;i++){
+        pieces.push({
+          x: Math.random()*W, y: -20 - Math.random()*H*0.3,
+          r: 5 + Math.random()*7, c: colors[(Math.random()*colors.length)|0],
+          vx: -2.5 + Math.random()*5, vy: 2 + Math.random()*4.5,
+          rot: Math.random()*6.28, vr: -0.25 + Math.random()*0.5,
+          sway: Math.random()*6.28
+        });
+      }
     }
-
-    var start = null, DURATION = 4200;
-    function frame(t){
-      if (!start) start = t;
-      var elapsed = t - start;
+    function loop(){
       ctx.clearRect(0,0,W,H);
-      var fade = elapsed > DURATION-900 ? Math.max(0,(DURATION-elapsed)/900) : 1;
-      parts.forEach(function(p){
-        p.sway += 0.05;
-        p.x += p.vx + Math.sin(p.sway);
-        p.y += p.vy;
-        p.vy += 0.04;
-        p.rot += p.vr;
-        ctx.save();
-        ctx.globalAlpha = fade;
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.fillStyle = p.c;
-        ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r*0.5);
+      for (var i=pieces.length-1;i>=0;i--){
+        var p = pieces[i];
+        p.sway += 0.05; p.x += p.vx + Math.sin(p.sway); p.y += p.vy; p.vy += 0.05; p.rot += p.vr;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
         ctx.restore();
-      });
-      if (elapsed < DURATION) requestAnimationFrame(frame);
-      else { ctx.clearRect(0,0,W,H); cv.remove(); }
+        if (p.y > H + 40) pieces.splice(i,1);
+      }
+      if (pieces.length) requestAnimationFrame(loop); else running = false;
     }
-    requestAnimationFrame(frame);
+    window.celebrate = function(n){ if (reduce) return; burst(n||150); if(!running){running=true;requestAnimationFrame(loop);} };
+    if (!reduce) setTimeout(function(){ window.celebrate(200); }, 300);
   })();
 </script>
 </body>
