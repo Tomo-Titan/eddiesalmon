@@ -443,18 +443,19 @@
     celebrate(150);
   });
 
-  // ── Scroll reveal ──
+  // ── Reveal: staggered fade-in on load (robust — never leaves content hidden) ──
   (function(){
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var els = document.querySelectorAll('.reveal');
-    if (reduce || !('IntersectionObserver' in window)){
-      els.forEach(function(e){ e.classList.add('in'); });
-      return;
+    function reveal(stagger){
+      els.forEach(function(e,i){
+        if (stagger && !reduce) e.style.transitionDelay = Math.min(i*0.06,0.5)+'s';
+        e.classList.add('in');
+      });
     }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    },{threshold:0.12, rootMargin:'0px 0px -30px 0px'});
-    els.forEach(function(e){ io.observe(e); });
+    if (reduce){ reveal(false); }
+    else { requestAnimationFrame(function(){ requestAnimationFrame(function(){ reveal(true); }); }); }
+    setTimeout(function(){ reveal(false); }, 1500); // safety backstop
   })();
 
   // ── Confetti (red / yellow / white) ──
