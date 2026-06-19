@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>EddieTube — The Official Archive of Eddie Salmon</title>
-<meta name="description" content="You survived the speech. You typed it in mid-wedding. Welcome to EddieTube — the fully restored archive of Eddie Salmon's finest work: Evil Car, I'm Not Fat!, and Irish. Everything his mum tried to delete, live forever." />
+<meta name="description" content="The fully restored archive of Eddie Salmon's finest work: Evil Car, I'm Not Fat!, and Irish. Three masterpieces. One legend. Zero parental supervision." />
 
 <!-- Share preview -->
 <meta property="og:type" content="website" />
@@ -35,8 +35,9 @@
     --muted-2:#909090;
     --line:#e5e5e5;
     --shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
-    --shadow-hi:0 6px 14px rgba(0,0,0,.10),0 22px 48px rgba(0,0,0,.14);
+    --shadow-hi:0 8px 18px rgba(0,0,0,.12),0 26px 54px rgba(0,0,0,.16);
     --font:"Roboto",Arial,sans-serif;
+    --ease:cubic-bezier(.2,.7,.2,1);
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
@@ -54,35 +55,33 @@
 
   canvas#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 
+  /* ───────── Scroll reveal (graceful: only hides when JS is on) ───────── */
+  html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+  html.js .reveal.in{opacity:1;transform:none}
+  .grid .video:nth-child(2){transition-delay:.09s}
+  .grid .video:nth-child(3){transition-delay:.18s}
+  .recommended .rec-row:nth-child(2){transition-delay:.06s}
+  .recommended .rec-row:nth-child(3){transition-delay:.12s}
+  .recommended .rec-row:nth-child(4){transition-delay:.18s}
+
   /* ───────── Top bar ───────── */
   .topbar{
     position:sticky;top:0;z-index:50;
-    display:flex;align-items:center;gap:16px;
-    background:#fff;border-bottom:1px solid var(--line);
-    padding:8px 18px;
+    display:flex;align-items:center;gap:14px;
+    background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:9px 18px;
   }
-  .logo{display:inline-flex;align-items:center;gap:7px;font-weight:900;font-size:22px;letter-spacing:-1px;flex:0 0 auto}
+  .logo{display:inline-flex;align-items:center;gap:8px;font-weight:900;font-size:22px;letter-spacing:-1px;flex:0 0 auto}
   .logo .play{
-    width:30px;height:21px;background:var(--red);border-radius:6px;position:relative;
-    box-shadow:0 2px 6px rgba(255,0,0,.4);
+    width:31px;height:22px;background:var(--red);border-radius:6px;position:relative;
+    box-shadow:0 2px 8px rgba(255,0,0,.45);transition:transform .25s var(--ease)
   }
+  .logo:hover .play{transform:scale(1.06)}
   .logo .play::after{content:"";position:absolute;top:50%;left:52%;transform:translate(-50%,-50%);
     border-style:solid;border-width:5px 0 5px 9px;border-color:transparent transparent transparent #fff}
   .logo .word{color:var(--ink)}
   .logo .word b{color:var(--red)}
-
-  .search{flex:1;max-width:520px;margin:0 auto;display:flex;align-items:center}
-  .search input{
-    flex:1;border:1px solid #ccc;border-right:0;border-radius:999px 0 0 999px;
-    padding:9px 16px;font-family:var(--font);font-size:14px;outline:none;background:#fff;
-    box-shadow:inset 0 1px 2px rgba(0,0,0,.04);
-  }
-  .search input:focus{border-color:var(--red)}
-  .search button{
-    border:1px solid #ccc;border-left:0;background:#f5f5f5;border-radius:0 999px 999px 0;
-    padding:9px 18px;cursor:pointer;font-size:15px;color:var(--muted);
-  }
-  .search button:hover{background:#ececec}
 
   .rec{margin-left:auto;display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.6px;flex:0 0 auto}
   .recdot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(255,0,0,.5);animation:pulse 1.5s infinite}
@@ -93,89 +92,100 @@
   /* ───────── Page width ───────── */
   .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
 
-  /* ───────── Banner / hero ───────── */
+  /* ───────── Banner / greeting ───────── */
   .banner{
     position:relative;overflow:hidden;color:#fff;
-    border-radius:0 0 18px 18px;
+    border-radius:0 0 20px 20px;
     background:
-      radial-gradient(120% 160% at 85% -20%, #ff3b3b 0%, transparent 55%),
+      radial-gradient(120% 150% at 85% -20%, #ff3b3b 0%, transparent 55%),
       linear-gradient(135deg,var(--red) 0%,var(--red-dark) 60%,var(--red-deep) 100%);
-    padding:46px 26px 54px;
+    padding:38px 26px 42px;
   }
-  .banner::before{ /* play-button watermark texture */
+  .banner::before{ /* play-button watermark */
     content:"";position:absolute;inset:0;opacity:.10;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Crect x='30' y='28' width='34' height='24' rx='7' fill='%23fff'/%3E%3Cpath d='M43 34l10 6-10 6z' fill='%23ff0000'/%3E%3C/svg%3E");
     background-size:90px 90px;
   }
-  .banner .inner{position:relative;max-width:1080px;margin:0 auto;padding:0 4px}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;
-    background:var(--yellow);color:#3a2a00;padding:5px 11px;border-radius:999px}
-  .banner h1{font-size:clamp(28px,6.4vw,54px);line-height:1.02;margin:16px 0 10px;font-weight:900;letter-spacing:-1.5px;max-width:18ch;
+  .banner::after{ /* slow premium sheen */
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.16) 48%,transparent 64%);
+    background-size:260% 100%;animation:sheen 7.5s ease-in-out infinite;
+  }
+  @keyframes sheen{0%{background-position:130% 0}55%,100%{background-position:-50% 0}}
+  .banner .inner{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 4px}
+  .banner h1{font-size:clamp(30px,6.6vw,54px);line-height:1.02;font-weight:900;letter-spacing:-1.5px;max-width:16ch;
     text-shadow:0 2px 0 rgba(0,0,0,.12)}
   .banner h1 .hl{color:var(--yellow)}
-  .banner p{margin:0;font-size:clamp(15px,2.6vw,19px);max-width:54ch;opacity:.96}
+  .banner .accent{display:block;width:64px;height:5px;border-radius:3px;background:var(--yellow);margin-top:16px;
+    box-shadow:0 0 18px rgba(255,212,0,.55);transform-origin:left;animation:grow .9s .35s both var(--ease)}
+  @keyframes grow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
 
   /* ───────── Channel header ───────── */
   .channel{
-    display:flex;gap:22px;align-items:center;flex-wrap:wrap;
-    margin:-28px auto 0;position:relative;z-index:2;
+    display:flex;gap:20px;align-items:center;
+    margin:-26px auto 0;position:relative;z-index:2;
     background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:20px 22px;box-shadow:var(--shadow);
+    padding:18px 22px;box-shadow:var(--shadow);
   }
-  .avatar{flex:0 0 auto;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:50px;
-    background:radial-gradient(circle at 30% 28%,#ffe0e0,#ff8a8a);border:4px solid #fff;box-shadow:0 0 0 1px var(--line),0 8px 20px rgba(255,0,0,.18)}
-  .chinfo{flex:1;min-width:240px}
-  .chinfo h2{font-size:26px;font-weight:900;letter-spacing:-.5px;display:inline-flex;align-items:center;gap:7px}
-  .verified{width:16px;height:16px;border-radius:50%;background:var(--muted-2);display:inline-grid;place-items:center;color:#fff;font-size:10px;font-weight:900}
+  .avatar{flex:0 0 auto;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:48px;
+    background:radial-gradient(circle at 30% 28%,#ffe0e0,#ff8a8a);border:4px solid #fff;
+    box-shadow:0 0 0 1px var(--line),0 10px 24px rgba(255,0,0,.20);animation:float 5s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .chinfo{flex:1;min-width:0}
+  .chinfo h2{font-size:25px;font-weight:900;letter-spacing:-.5px;display:inline-flex;align-items:center;gap:7px}
+  .verified{width:16px;height:16px;border-radius:50%;background:var(--muted-2);display:inline-grid;place-items:center;color:#fff;font-size:10px;font-weight:900;flex:0 0 auto}
   .handle{color:var(--muted);font-size:14px;font-weight:500;margin:3px 0}
-  .stats{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 4px}
+  .stats{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:3px 14px;margin:6px 0 6px}
   .stats b{color:var(--ink)}
-  .bio{color:#444;font-size:13.5px;max-width:62ch;margin-top:6px}
+  .bio{color:#444;font-size:13.5px;max-width:60ch}
   .chcta{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
   .subbtn{
     background:var(--red);color:#fff;border:0;border-radius:999px;padding:11px 22px;
     font-family:var(--font);font-weight:900;font-size:14px;cursor:pointer;letter-spacing:.2px;
-    display:inline-flex;align-items:center;gap:8px;transition:transform .15s,background .2s,box-shadow .2s;
+    display:inline-flex;align-items:center;gap:8px;transition:transform .15s var(--ease),background .2s,box-shadow .2s;
     box-shadow:0 6px 16px rgba(255,0,0,.28);
   }
-  .subbtn:hover{background:var(--red-dark)}
-  .subbtn:active{transform:translateY(1px)}
-  .subbtn.done{background:#e9e9e9;color:#0f0f0f;box-shadow:none}
-  .bell{background:#f2f2f2;color:#0f0f0f;border:0;border-radius:999px;padding:11px 16px;font-size:14px;font-weight:700;cursor:pointer}
+  .subbtn:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 10px 22px rgba(255,0,0,.34)}
+  .subbtn:active{transform:translateY(0)}
+  .subbtn.done{background:#e9e9e9;color:#0f0f0f;box-shadow:none;transform:none}
+  .bell{background:#f2f2f2;color:#0f0f0f;border:0;border-radius:999px;padding:11px 16px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s,transform .15s var(--ease)}
+  .bell:hover{background:#e7e7e7;transform:translateY(-2px)}
 
   /* ───────── Tabs ───────── */
-  .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:26px 2px 4px;overflow-x:auto}
-  .tabs a{padding:11px 2px;font-size:14px;font-weight:700;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent}
+  .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:24px 2px 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs a{padding:11px 2px;font-size:14px;font-weight:700;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
   .tabs a.active{color:var(--ink);border-bottom-color:var(--ink)}
   .tabs a:hover{color:var(--ink)}
 
   /* ───────── Section label ───────── */
-  .seclabel{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;margin:30px 2px 16px;letter-spacing:-.3px}
+  .seclabel{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;margin:28px 2px 16px;letter-spacing:-.3px}
   .seclabel .tag{font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;background:var(--yellow);color:#3a2a00;padding:3px 9px;border-radius:6px}
 
   /* ───────── Video grid ───────── */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr;gap:16px}}
 
   .video{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
-    box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
-  .video:hover{transform:translateY(-4px);box-shadow:var(--shadow-hi)}
+    box-shadow:var(--shadow);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .video:hover{transform:translateY(-5px);box-shadow:var(--shadow-hi)}
 
   .thumb{
     display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;margin:0;cursor:pointer;
     position:relative;background:#000 center/cover no-repeat;overflow:hidden;
   }
-  .thumb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 40%,rgba(0,0,0,.28));opacity:0;transition:opacity .25s}
+  .thumb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 38%,rgba(0,0,0,.30));opacity:0;transition:opacity .3s}
   .thumb:hover::before{opacity:1}
   .thumb .dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.82);color:#fff;font-size:12px;font-weight:700;
     padding:2px 6px;border-radius:5px;letter-spacing:.3px}
   .thumb .pbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);
-    width:66px;height:46px;background:rgba(255,0,0,.92);border-radius:13px;opacity:.92;transition:transform .25s,opacity .25s;
-    box-shadow:0 6px 18px rgba(0,0,0,.35)}
+    width:66px;height:46px;background:rgba(255,0,0,.92);border-radius:13px;opacity:.92;
+    transition:transform .3s var(--ease),opacity .25s,background .25s;box-shadow:0 6px 18px rgba(0,0,0,.4)}
   .thumb .pbtn::after{content:"";position:absolute;top:50%;left:53%;transform:translate(-50%,-50%);
     border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff}
-  .thumb:hover .pbtn{transform:translate(-50%,-50%) scale(1);opacity:1;background:var(--red)}
+  .thumb:hover .pbtn,.thumb:focus-visible .pbtn{transform:translate(-50%,-50%) scale(1.08);opacity:1;background:var(--red)}
+
   .thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
   .vinfo{padding:13px 14px 16px}
@@ -188,8 +198,8 @@
   .vmeta{font-size:12.5px;color:var(--muted)}
   .vcap{font-size:13px;color:#444;margin:10px 0 12px}
   .watch{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--red);
-    border:1px solid var(--line);border-radius:999px;padding:7px 13px;transition:background .2s,border-color .2s}
-  .watch:hover{background:#fff5f5;border-color:#ffd0d0}
+    border:1px solid var(--line);border-radius:999px;padding:7px 13px;transition:background .2s,border-color .2s,transform .15s var(--ease)}
+  .watch:hover{background:#fff5f5;border-color:#ffd0d0;transform:translateY(-1px)}
 
   /* ───────── Pinned comment ───────── */
   .pinned{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--yellow);
@@ -200,13 +210,13 @@
   .pinned .pname{font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:6px}
   .pinned .pname span{font-weight:400;color:var(--muted);font-size:12.5px}
   .pinned .ptext{font-size:14px;margin:3px 0 6px}
-  .pinned .pacts{font-size:12.5px;color:var(--muted);display:flex;gap:16px}
+  .pinned .pacts{font-size:12.5px;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap}
 
   /* ───────── Up next ───────── */
   .recommended{display:grid;gap:10px;margin-top:6px}
   .rec-row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:11px 14px;transition:background .15s}
-  .rec-row:hover{background:#fafafa}
+    border-radius:12px;padding:11px 14px;transition:background .15s,transform .15s var(--ease)}
+  .rec-row:hover{background:#fafafa;transform:translateX(3px)}
   .rec-thumb{flex:0 0 auto;width:88px;height:50px;border-radius:8px;display:grid;place-items:center;font-size:22px;
     background:linear-gradient(135deg,#1f1f1f,#3a3a3a);color:#fff;position:relative;overflow:hidden}
   .rec-thumb .mini{position:absolute;right:5px;bottom:4px;font-size:9px;font-weight:700;background:rgba(0,0,0,.7);color:#fff;padding:1px 4px;border-radius:3px}
@@ -214,37 +224,53 @@
   .rec-row span{font-size:12px;color:var(--muted)}
 
   /* ───────── Sign off ───────── */
-  .signoff{text-align:center;border-radius:18px;padding:42px 24px;margin:38px 2px 26px;color:#fff;position:relative;overflow:hidden;
+  .signoff{text-align:center;border-radius:18px;padding:42px 24px;margin:36px 2px 26px;color:#fff;position:relative;overflow:hidden;
     background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%)}
   .signoff::before{content:"";position:absolute;inset:0;opacity:.12;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ctext y='52' font-size='44'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E");background-size:80px 80px}
   .signoff .small{position:relative;font-size:14px;opacity:.9;font-weight:500}
   .signoff h2{position:relative;font-size:clamp(24px,5vw,36px);font-weight:900;letter-spacing:-1px;margin:8px 0 12px}
-  .signoff .heart{position:relative;font-size:30px;margin-bottom:10px}
+  .signoff .heart{position:relative;font-size:30px;margin-bottom:10px;display:inline-block;animation:beat 1.6s ease-in-out infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.2)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
   .signoff .congrats{position:relative;font-size:clamp(15px,3vw,18px);font-weight:700}
   .signoff .congrats b{background:var(--yellow);color:#3a2a00;padding:1px 9px;border-radius:6px}
 
   /* ───────── Footer ───────── */
-  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:14px 18px 56px;max-width:680px;margin:0 auto}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:12px 18px 54px;max-width:680px;margin:0 auto}
   footer a{color:var(--red);font-weight:700}
 
-  /* ───────── Entrance ───────── */
-  .rise{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
-  @keyframes rise{to{opacity:1;transform:none}}
-
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;scroll-behavior:auto}
-    .rise{opacity:1;transform:none}
-    canvas#confetti{display:none}
-  }
   :focus-visible{outline:3px solid #1a73e8;outline-offset:2px;border-radius:6px}
 
+  /* ───────── Mobile mastery ───────── */
   @media(max-width:680px){
-    .search{display:none}
-    .banner{padding:34px 18px 46px}
-    .avatar{width:78px;height:78px;font-size:40px}
+    .topbar{padding:8px 13px;gap:10px}
+    .logo{font-size:20px}
+    .rec{font-size:11px;letter-spacing:.4px}
+    .banner{padding:24px 16px 30px;border-radius:0 0 16px 16px}
+    .banner h1{font-size:clamp(27px,8.4vw,38px);max-width:14ch}
+    .banner .accent{margin-top:13px;width:54px;height:4px}
+    .channel{margin-top:-20px;gap:14px;padding:15px 16px;border-radius:14px}
+    .avatar{width:64px;height:64px;font-size:32px;border-width:3px}
+    .chinfo h2{font-size:20px}
+    .handle{font-size:12.5px}
+    .stats{font-size:12px;gap:2px 12px}
+    .bio{font-size:12.5px;line-height:1.45}
+    .chcta{margin-top:12px}
+    .subbtn{padding:10px 20px;font-size:13.5px}
+    .tabs{margin:16px 2px 2px;gap:20px}
+    .seclabel{font-size:16px;margin:22px 2px 12px}
+    .vinfo{padding:12px 13px 15px}
+    .signoff{padding:34px 20px;margin-top:30px}
+    .pinned{padding:14px 15px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto;transition:none!important}
+    html.js .reveal{opacity:1!important;transform:none!important}
+    canvas#confetti{display:none}
   }
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 <canvas id="confetti"></canvas>
@@ -252,10 +278,6 @@
 <!-- Top bar -->
 <header class="topbar">
   <a class="logo" href="#"><span class="play"></span><span class="word">Eddie<b>Tube</b></span></a>
-  <form class="search" onsubmit="return false">
-    <input type="text" placeholder="Search the incidents…" aria-label="Search" />
-    <button type="submit" aria-label="Search">🔍</button>
-  </form>
   <span class="rec"><span class="recdot"></span>REC · ARCHIVE LIVE</span>
   <span class="navfish" aria-hidden="true">🐟</span>
 </header>
@@ -263,22 +285,21 @@
 <!-- Banner / greeting -->
 <section class="banner">
   <div class="inner">
-    <span class="eyebrow rise" style="animation-delay:.05s">📺 Broadcast Yourself™ — and he did. Relentlessly.</span>
-    <h1 class="rise" style="animation-delay:.15s">So. You actually <span class="hl">typed it in.</span></h1>
-    <p class="rise" style="animation-delay:.28s">Mid-wedding. While he's standing right there. Outstanding. Welcome to the official archive — everything Anita tried to delete, restored and uploaded against his will by the Best Man.</p>
+    <h1>So. You actually <span class="hl">typed it in.</span></h1>
+    <span class="accent" aria-hidden="true"></span>
   </div>
 </section>
 
 <div class="wrap">
 
   <!-- Channel header -->
-  <section class="channel rise" style="animation-delay:.34s">
+  <section class="channel reveal">
     <div class="avatar" aria-hidden="true">🐟</div>
     <div class="chinfo">
       <h2>Eddie Salmon <span class="verified" title="Verified legend">✓</span></h2>
       <div class="handle">@eddiesalmon · also known as Stencil25 Studios</div>
-      <div class="stats"><span><b>3</b> masterpieces</span><span><b>4</b> subscribers (his mum, three times)</span><span><b>14</b> A&amp;E visits</span><span>Joined 2009</span></div>
-      <p class="bio">Child actor. Stuntman. Lego connoisseur. Professional fighter of stationary objects. According to the doctors who sat the family down, the only thing ever actually wrong in that house. Twenty years on — somehow fine.</p>
+      <div class="stats"><span><b>3</b> masterpieces</span><span><b>4</b> subscribers (his mum, three times)</span><span><b>14</b> A&amp;E visits</span><span>Joined 2007</span></div>
+      <p class="bio">Child actor. Stuntman. Lego connoisseur. Professional fighter of stationary objects. Twenty years on — somehow fine.</p>
       <div class="chcta">
         <button class="subbtn" id="sub" type="button">Subscribe</button>
         <button class="bell" type="button" title="Notifications" onclick="celebrate(110)">🔔</button>
@@ -296,12 +317,12 @@
   </nav>
 
   <!-- The Complete Works -->
-  <div class="seclabel" id="works">📼 The Complete Works <span class="tag">Remastered</span></div>
+  <div class="seclabel reveal" id="works">📼 The Complete Works <span class="tag">Remastered</span></div>
 
   <div class="grid">
 
     <!-- Evil Car -->
-    <article class="video rise" style="animation-delay:.1s">
+    <article class="video reveal">
       <button class="thumb" data-id="JpMAVFLZBUg" data-title="Evil Car"
         style="background-image:url('https://i.ytimg.com/vi/JpMAVFLZBUg/hqdefault.jpg')" aria-label="Play: Evil Car">
         <span class="pbtn"></span><span class="dur">0:53</span>
@@ -312,7 +333,7 @@
           <div>
             <div class="vtitle">Evil Car</div>
             <div class="vchan">Eddie Salmon <span class="verified">✓</span></div>
-            <div class="vmeta">2,341,008 views · 14 years ago</div>
+            <div class="vmeta">2,341,008 views · 19 years ago</div>
           </div>
         </div>
         <p class="vcap">The plastic-car fight the speech warned you about. Method acting. The car declined to comment.</p>
@@ -321,7 +342,7 @@
     </article>
 
     <!-- I'm Not Fat! -->
-    <article class="video rise" style="animation-delay:.2s">
+    <article class="video reveal">
       <button class="thumb" data-id="x7eRDTIRbe8" data-title="I'm Not Fat!"
         style="background-image:url('https://i.ytimg.com/vi/x7eRDTIRbe8/hqdefault.jpg')" aria-label="Play: I'm Not Fat!">
         <span class="pbtn"></span><span class="dur">0:38</span>
@@ -332,7 +353,7 @@
           <div>
             <div class="vtitle">"I'm Not Fat!"</div>
             <div class="vchan">Eddie Salmon <span class="verified">✓</span></div>
-            <div class="vmeta">1,884,200 views · 13 years ago</div>
+            <div class="vmeta">1,884,200 views · 18 years ago</div>
           </div>
         </div>
         <p class="vcap">A bold thesis, defended at considerable volume. He protests. We nod. We dare not do otherwise.</p>
@@ -341,7 +362,7 @@
     </article>
 
     <!-- Irish -->
-    <article class="video rise" style="animation-delay:.3s">
+    <article class="video reveal">
       <button class="thumb" data-id="SzK627z6HCM" data-title="Irish"
         style="background-image:url('https://i.ytimg.com/vi/SzK627z6HCM/hqdefault.jpg')" aria-label="Play: Irish">
         <span class="pbtn"></span><span class="dur">1:12</span>
@@ -352,7 +373,7 @@
           <div>
             <div class="vtitle">Irish</div>
             <div class="vchan">Eddie Salmon <span class="verified">✓</span></div>
-            <div class="vmeta">1,103,557 views · 13 years ago</div>
+            <div class="vmeta">1,103,557 views · 18 years ago</div>
           </div>
         </div>
         <p class="vcap">An accent. A full commitment. Ireland is yet to release a statement. Bafta-snubbed, frankly.</p>
@@ -363,7 +384,7 @@
   </div>
 
   <!-- Pinned comment -->
-  <div class="pinned">
+  <div class="pinned reveal">
     <div class="pav" aria-hidden="true">👩</div>
     <div>
       <div class="ptag">📌 Pinned by Eddie Salmon</div>
@@ -374,16 +395,16 @@
   </div>
 
   <!-- Up Next -->
-  <div class="seclabel" id="about">Up Next</div>
+  <div class="seclabel reveal" id="about">Up Next</div>
   <div class="recommended">
-    <div class="rec-row"><div class="rec-thumb">🧱<span class="mini">3:09</span></div><div><b>How To Eat Lego Safely (Tutorial)</b><span>0 useful tips · age-restricted by Anita</span></div></div>
-    <div class="rec-row"><div class="rec-thumb">🏥<span class="mini">14:00</span></div><div><b>A&amp;E Loyalty Card: Was It Worth It?</b><span>Eddie reviews all 14 visits · brutally honest</span></div></div>
-    <div class="rec-row"><div class="rec-thumb">🥊<span class="mini">∞</span></div><div><b>Fighting Inanimate Objects: A Retrospective</b><span>feature-length · the objects won</span></div></div>
-    <div class="rec-row"><div class="rec-thumb">🎬<span class="mini">LIVE</span></div><div><b>Mum Reacts: "yeah, of course he did"</b><span>full series · all 200 episodes</span></div></div>
+    <div class="rec-row reveal"><div class="rec-thumb">🧱<span class="mini">3:09</span></div><div><b>How To Eat Lego Safely (Tutorial)</b><span>0 useful tips · age-restricted by Anita</span></div></div>
+    <div class="rec-row reveal"><div class="rec-thumb">🏥<span class="mini">14:00</span></div><div><b>A&amp;E Loyalty Card: Was It Worth It?</b><span>Eddie reviews all 14 visits · brutally honest</span></div></div>
+    <div class="rec-row reveal"><div class="rec-thumb">🥊<span class="mini">∞</span></div><div><b>Fighting Inanimate Objects: A Retrospective</b><span>feature-length · the objects won</span></div></div>
+    <div class="rec-row reveal"><div class="rec-thumb">🎬<span class="mini">LIVE</span></div><div><b>Mum Reacts: "yeah, of course he did"</b><span>full series · all 200 episodes</span></div></div>
   </div>
 
   <!-- Sign off -->
-  <section class="signoff">
+  <section class="signoff reveal">
     <div class="small">Anyway.</div>
     <h2>He turned out alright in the end.</h2>
     <div class="heart">❤️</div>
@@ -421,6 +442,20 @@
     sub.innerHTML = 'Subscribed 🔔';
     celebrate(150);
   });
+
+  // ── Scroll reveal ──
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)){
+      els.forEach(function(e){ e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:0.12, rootMargin:'0px 0px -30px 0px'});
+    els.forEach(function(e){ io.observe(e); });
+  })();
 
   // ── Confetti (red / yellow / white) ──
   (function(){
