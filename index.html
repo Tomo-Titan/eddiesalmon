@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Eddie Salmon Cinematic Universe — A Stencil25 Studios Retrospective</title>
+<meta name="description" content="You survived the speech. Now witness the fully restored archive of Eddie Salmon's early cinematic work — including the legendary 'Evil Car'. By order of the Best Man." />
+
+<!-- Open Graph / share preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The Eddie Salmon Cinematic Universe" />
+<meta property="og:description" content="A Stencil25 Studios retrospective. Two films. One legend. Zero parental supervision. By order of the Best Man." />
+<meta property="og:image" content="https://i.ytimg.com/vi/JpMAVFLZBUg/hqdefault.jpg" />
+<meta property="og:url" content="https://eddiesalmon.com" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Clapperboard favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,600&family=Spectral:ital,wght@0,400;0,500;1,400&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#0d0a07;
+    --ink-2:#16110b;
+    --paper:#f4ead2;
+    --paper-dim:#cdbf9f;
+    --gold:#e6c378;
+    --gold-bright:#f7dca0;
+    --gold-deep:#b8902f;
+    --velvet:#8e1d16;
+    --velvet-bright:#c0392b;
+    --line:rgba(230,195,120,.22);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Spectral",Georgia,serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* Warm spotlight + vignette atmosphere */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(230,195,120,.16), transparent 55%),
+      radial-gradient(100% 80% at 50% 120%, rgba(142,29,22,.20), transparent 60%),
+      radial-gradient(140% 120% at 50% 40%, transparent 40%, rgba(0,0,0,.55) 100%);
+  }
+
+  /* Film grain overlay */
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:60;
+    pointer-events:none;
+    opacity:.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .stage{position:relative;z-index:1}
+
+  /* ---------- Top marquee ticker ---------- */
+  .ticker{
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#1a130b,#0d0a07);
+    overflow:hidden;
+    position:relative;
+  }
+  .bulbs{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    padding:8px 0 4px;
+  }
+  .bulbs i{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--gold-bright);
+    box-shadow:0 0 8px var(--gold),0 0 14px var(--gold-deep);
+    animation:blink 1.4s infinite;
+  }
+  .bulbs i:nth-child(even){animation-delay:.7s}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  .ticker-track{
+    display:flex;
+    white-space:nowrap;
+    will-change:transform;
+    animation:slide 28s linear infinite;
+    padding:6px 0 10px;
+  }
+  .ticker-track span{
+    font-family:"Bebas Neue",sans-serif;
+    letter-spacing:.28em;
+    font-size:.95rem;
+    color:var(--gold);
+    padding:0 1.4rem;
+  }
+  .ticker-track span::after{content:"★";color:var(--velvet-bright);margin-left:2.8rem;opacity:.8}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- Layout shell ---------- */
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    text-align:center;
+    padding:64px 0 30px;
+    position:relative;
+  }
+  .studio{
+    font-family:"Stardos Stencil",monospace;
+    font-weight:700;
+    letter-spacing:.12em;
+    color:var(--paper-dim);
+    font-size:.92rem;
+    text-transform:uppercase;
+  }
+  .studio b{color:var(--gold)}
+  .presents{
+    display:block;
+    font-family:"Spectral",serif;
+    font-style:italic;
+    color:var(--paper-dim);
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:.7rem;
+    margin-top:6px;
+  }
+
+  h1.title{
+    font-family:"Bebas Neue",sans-serif;
+    font-weight:400;
+    line-height:.92;
+    letter-spacing:.01em;
+    margin:18px auto 4px;
+    font-size:clamp(3.1rem,11vw,7.4rem);
+    color:var(--gold-bright);
+    text-shadow:0 2px 0 var(--gold-deep),0 0 38px rgba(230,195,120,.30);
+    max-width:14ch;
+  }
+  h1.title .uni{display:block;color:var(--paper)}
+
+  .rule{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    color:var(--gold-deep);margin:14px 0 22px;
+  }
+  .rule::before,.rule::after{content:"";height:1px;width:min(120px,22vw);background:linear-gradient(90deg,transparent,var(--gold-deep))}
+  .rule::after{background:linear-gradient(90deg,var(--gold-deep),transparent)}
+  .rule span{font-family:"Bebas Neue",sans-serif;letter-spacing:.3em;font-size:.85rem;color:var(--gold)}
+
+  .dek{
+    max-width:54ch;margin:0 auto;
+    font-size:clamp(1.02rem,2.4vw,1.22rem);
+    color:var(--paper);
+  }
+  .dek em{color:var(--gold-bright);font-style:italic}
+
+  .badges{
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+    margin:26px auto 0;
+  }
+  .badge{
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:7px 13px;
+    font-family:"Bebas Neue",sans-serif;
+    letter-spacing:.16em;
+    font-size:.82rem;
+    color:var(--paper-dim);
+    background:rgba(230,195,120,.04);
+  }
+  .badge b{color:var(--gold)}
+
+  /* ---------- Section heading ---------- */
+  .sec-head{text-align:center;margin:70px 0 34px}
+  .sec-head h2{
+    font-family:"Bebas Neue",sans-serif;font-weight:400;
+    font-size:clamp(2.2rem,6vw,3.4rem);letter-spacing:.04em;color:var(--paper);
+  }
+  .sec-head p{font-style:italic;color:var(--paper-dim)}
+
+  /* ---------- Film cards ---------- */
+  .films{display:flex;flex-direction:column;gap:46px}
+  .film{
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    gap:30px;
+    align-items:center;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:24px;
+    background:linear-gradient(160deg,rgba(255,255,255,.025),rgba(0,0,0,.25));
+    position:relative;
+  }
+  .film:nth-child(even){grid-template-columns:1fr 1.15fr}
+  .film:nth-child(even) .film-meta{order:-1}
+  .film::before{
+    content:"";position:absolute;inset:6px;border:1px solid rgba(230,195,120,.10);
+    border-radius:3px;pointer-events:none;
+  }
+
+  /* video facade */
+  .player{
+    position:relative;
+    aspect-ratio:16/9;
+    border-radius:3px;
+    overflow:hidden;
+    background:#000 center/cover no-repeat;
+    cursor:pointer;
+    box-shadow:0 18px 40px rgba(0,0,0,.55);
+    border:1px solid rgba(230,195,120,.25);
+  }
+  .player::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 50%,transparent 30%,rgba(0,0,0,.5));
+    transition:opacity .3s;
+  }
+  .player .play{
+    position:absolute;inset:0;display:grid;place-items:center;z-index:2;
+  }
+  .player .play b{
+    width:74px;height:74px;border-radius:50%;
+    background:rgba(13,10,7,.62);
+    border:2px solid var(--gold-bright);
+    display:grid;place-items:center;
+    box-shadow:0 0 26px rgba(230,195,120,.45);
+    transition:transform .25s,background .25s;
+  }
+  .player .play b::before{
+    content:"";margin-left:5px;
+    border-style:solid;border-width:13px 0 13px 22px;
+    border-color:transparent transparent transparent var(--gold-bright);
+  }
+  .player:hover .play b{transform:scale(1.1);background:var(--velvet)}
+  .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  .reel-no{
+    font-family:"Bebas Neue",sans-serif;letter-spacing:.22em;
+    color:var(--velvet-bright);font-size:.9rem;
+  }
+  h3.film-title{
+    font-family:"Playfair Display",serif;font-weight:700;
+    font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.02;
+    color:var(--gold-bright);margin:4px 0 8px;
+  }
+  .credits{
+    font-size:.84rem;color:var(--paper-dim);letter-spacing:.02em;
+    text-transform:uppercase;margin-bottom:16px;
+  }
+  .quote{
+    font-family:"Playfair Display",serif;font-style:italic;
+    font-size:1.12rem;color:var(--paper);
+    border-left:2px solid var(--gold-deep);padding-left:14px;margin:0 0 6px;
+  }
+  .quote-by{font-size:.82rem;color:var(--gold);letter-spacing:.04em;margin-bottom:16px;display:block}
+  .synopsis{font-size:.98rem;color:var(--paper-dim);margin-bottom:20px}
+
+  .stars{color:var(--gold-bright);letter-spacing:.18em;font-size:1.15rem;margin-bottom:4px}
+  .score{font-family:"Bebas Neue",sans-serif;letter-spacing:.14em;color:var(--paper-dim);font-size:.82rem;margin-bottom:18px}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:"Bebas Neue",sans-serif;letter-spacing:.16em;font-size:1rem;
+    background:var(--velvet);color:var(--gold-bright);
+    border:1px solid var(--velvet-bright);
+    padding:12px 22px;border-radius:3px;text-decoration:none;
+    transition:transform .2s,background .2s,box-shadow .2s;
+  }
+  .btn:hover{background:var(--velvet-bright);color:#fff;transform:translateY(-2px);box-shadow:0 10px 24px rgba(192,57,43,.35)}
+  .btn.gold{background:transparent;color:var(--gold-bright);border-color:var(--gold-deep)}
+  .btn.gold:hover{background:rgba(230,195,120,.12);box-shadow:0 10px 24px rgba(230,195,120,.2)}
+
+  /* ---------- Special features / trivia ---------- */
+  .features{
+    margin:80px 0 0;border:1px dashed var(--line);border-radius:5px;
+    padding:34px 30px;background:rgba(0,0,0,.22);
+  }
+  .features h2{
+    font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.06em;
+    font-size:clamp(1.8rem,5vw,2.6rem);color:var(--paper);text-align:center;margin-bottom:4px;
+  }
+  .features .sub{text-align:center;font-style:italic;color:var(--paper-dim);margin-bottom:26px}
+  .trivia{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .trivia li{
+    list-style:none;display:flex;gap:14px;align-items:flex-start;
+    padding:16px;border:1px solid var(--line);border-radius:3px;
+    background:linear-gradient(160deg,rgba(255,255,255,.025),transparent);
+  }
+  .trivia .ico{font-size:1.6rem;line-height:1;filter:drop-shadow(0 0 6px rgba(230,195,120,.4))}
+  .trivia b{display:block;font-family:"Bebas Neue",sans-serif;letter-spacing:.12em;color:var(--gold);font-size:1.02rem;margin-bottom:2px}
+  .trivia p{font-size:.94rem;color:var(--paper-dim)}
+
+  /* ---------- Ticket / CTA ---------- */
+  .ticket{
+    margin:72px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:0;
+    border:1px solid var(--gold-deep);border-radius:6px;overflow:hidden;
+    background:
+      radial-gradient(circle at 0 50%,var(--ink) 11px,transparent 12px) left,
+      radial-gradient(circle at 100% 50%,var(--ink) 11px,transparent 12px) right;
+    background-repeat:no-repeat;
+    background-color:#1b130b;
+  }
+  .ticket .stub{
+    flex:0 0 auto;writing-mode:vertical-rl;text-orientation:mixed;
+    background:var(--velvet);color:var(--gold-bright);
+    font-family:"Bebas Neue",sans-serif;letter-spacing:.4em;font-size:1.3rem;
+    padding:22px 14px;border-right:2px dashed rgba(13,10,7,.6);
+    align-self:stretch;display:flex;align-items:center;justify-content:center;
+  }
+  .ticket .body{flex:1;min-width:260px;padding:28px 30px}
+  .ticket h2{font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:.05em;font-size:1.9rem;color:var(--gold-bright)}
+  .ticket p{color:var(--paper-dim);margin:6px 0 18px;max-width:44ch}
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;padding:60px 22px 70px;margin-top:64px;
+    border-top:1px solid var(--line);color:var(--paper-dim);
+  }
+  footer .dom{font-family:"Bebas Neue",sans-serif;letter-spacing:.3em;color:var(--gold);font-size:1.5rem}
+  footer .fine{font-size:.86rem;font-style:italic;margin:14px auto 0;max-width:48ch}
+  footer .sign{margin-top:18px;color:var(--gold-bright);font-family:"Playfair Display",serif;font-style:italic}
+
+  /* ---------- Confetti ---------- */
+  #confetti{position:fixed;inset:0;z-index:50;pointer-events:none}
+
+  /* ---------- Entrance animation ---------- */
+  .rise{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:780px){
+    .film,.film:nth-child(even){grid-template-columns:1fr}
+    .film:nth-child(even) .film-meta{order:0}
+    .trivia{grid-template-columns:1fr}
+    .hero{padding-top:46px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto}
+    .rise{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<div class="stage">
+
+  <!-- Marquee ticker -->
+  <div class="ticker">
+    <div class="bulbs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="ticker-track">
+      <span>Now Showing</span><span>One Night Only</span><span>Admit One</span><span>By Order of the Best Man</span><span>Strictly No Lego Past This Point</span>
+      <span>Now Showing</span><span>One Night Only</span><span>Admit One</span><span>By Order of the Best Man</span><span>Strictly No Lego Past This Point</span>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- Hero -->
+    <section class="hero">
+      <p class="studio rise" style="animation-delay:.05s"><b>Stencil25</b> Studios<span class="presents">proudly presents</span></p>
+      <h1 class="title rise" style="animation-delay:.15s">The Eddie Salmon<span class="uni">Cinematic Universe</span></h1>
+      <div class="rule rise" style="animation-delay:.3s"><span>Fully Restored · Mostly</span></div>
+      <p class="dek rise" style="animation-delay:.4s">You survived the speech. You typed the address. There is <em>no going back now.</em> Welcome to the restored archive of the films that once made a GP surgery sit Anita down for a quiet word.</p>
+      <div class="badges rise" style="animation-delay:.55s">
+        <span class="badge"><b>Genre:</b> Documentary · Action · Concern</span>
+        <span class="badge"><b>Rated 18:</b> Contains Lego</span>
+        <span class="badge"><b>Est.</b> One questionable childhood</span>
+      </div>
+    </section>
+
+    <!-- The collection -->
+    <div class="sec-head">
+      <h2>The Collection</h2>
+      <p>Two films. One legend. Zero parental supervision.</p>
+    </div>
+
+    <section class="films">
+
+      <!-- Film 1 -->
+      <article class="film">
+        <div class="player" data-id="JpMAVFLZBUg" data-title="Evil Car"
+             style="background-image:url('https://i.ytimg.com/vi/JpMAVFLZBUg/hqdefault.jpg')">
+          <div class="play"><b></b></div>
+        </div>
+        <div class="film-meta">
+          <span class="reel-no">Feature Presentation No. 01</span>
+          <h3 class="film-title">Evil Car</h3>
+          <p class="credits">Dir. E. Salmon · Action / Survival · Filmed on location: the driveway</p>
+          <p class="quote">A boy. A toy. A plastic car that simply would not die. Bafta-snubbed, frankly.</p>
+          <span class="quote-by">— The Best Man, twenty years a witness</span>
+          <p class="synopsis">The film the speech warned you about. Watch Eddie wage open war on a vehicle that never once fought back.</p>
+          <div class="stars">★★★★★</div>
+          <div class="score">98% · Rotten Carrots — “Certified Concerning”</div>
+          <a class="btn" href="https://www.youtube.com/watch?v=JpMAVFLZBUg" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+      </article>
+
+      <!-- Film 2 -->
+      <article class="film">
+        <div class="player" data-id="x7eRDTIRbe8" data-title="I'm not fat!"
+             style="background-image:url('https://i.ytimg.com/vi/x7eRDTIRbe8/hqdefault.jpg')">
+          <div class="play"><b></b></div>
+        </div>
+        <div class="film-meta">
+          <span class="reel-no">Feature Presentation No. 02</span>
+          <h3 class="film-title">“I'm Not Fat!”</h3>
+          <p class="credits">Dir. E. Salmon · Drama / Denial · A bold statement, loudly defended</p>
+          <p class="quote">He protests. We nod. We dare not do otherwise.</p>
+          <span class="quote-by">— Anita Salmon, his lovely mother</span>
+          <p class="synopsis">A tender, feature-length rebuttal to an accusation no one is entirely sure was ever made.</p>
+          <div class="stars">★★★★★</div>
+          <div class="score">100% · The Academy — “A career-defining objection”</div>
+          <a class="btn" href="https://www.youtube.com/watch?v=x7eRDTIRbe8" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Special features -->
+    <section class="features">
+      <h2>From the Best Man's Files</h2>
+      <p class="sub">Special Features · Behind the scenes · Director's commentary unavailable (he's at his own wedding)</p>
+      <ul class="trivia">
+        <li><span class="ico">🧱</span><div><b>Method acting</b><p>Ate the props. The props were Lego. The doctors were notified.</p></div></li>
+        <li><span class="ico">🩺</span><div><b>The Welfare Check</b><p>So accident-prone the surgery sat the family down — just to check everything was alright at home. It was. The only thing wrong in that house was Eddie.</p></div></li>
+        <li><span class="ico">🎬</span><div><b>Twenty Years of Footage</b><p>Not one single frame of self-preservation has ever been recovered.</p></div></li>
+        <li><span class="ico">💭</span><div><b>Anita's One-Line Review</b><p>“Yeah… of course he did.” — the entire genre, summarised by his mother.</p></div></li>
+      </ul>
+    </section>
+
+    <!-- Ticket CTA -->
+    <section class="ticket">
+      <div class="stub">Admit One</div>
+      <div class="body">
+        <h2>The Full Back-Catalogue</h2>
+        <p>There is, regrettably, more. The complete works of a young auteur live on the original channel — Stencil25.</p>
+        <a class="btn gold" href="https://www.youtube.com/@stencil25" target="_blank" rel="noopener">★ Visit Stencil25 on YouTube</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="dom">eddiesalmon.com</div>
+    <p class="fine">Curated, restored and erected by the Best Man. No plastic cars were harmed in the making of this website. (Several were.)</p>
+    <p class="sign">Congratulations, Eddie — here's to twenty more years of you being absolutely fine.</p>
+  </footer>
+
+</div>
+
+<script>
+  // ---- Click-to-play YouTube facade ----
+  document.querySelectorAll('.player').forEach(function(p){
+    p.addEventListener('click', function(){
+      var id = p.getAttribute('data-id');
+      var title = p.getAttribute('data-title') || 'video';
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      f.title = title;
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      p.innerHTML = '';
+      p.style.cursor = 'default';
+      p.appendChild(f);
+    });
+  });
+
+  // ---- Confetti burst (gold / cream / velvet) ----
+  (function(){
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cv = document.getElementById('confetti');
+    var ctx = cv.getContext('2d');
+    var W, H, parts = [], colors = ['#e6c378','#f7dca0','#f4ead2','#c0392b','#b8902f'];
+    function size(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+    size(); addEventListener('resize', size);
+
+    for (var i = 0; i < 150; i++){
+      parts.push({
+        x: W/2 + (Math.random()-.5)*W*0.5,
+        y: -20 - Math.random()*H*0.3,
+        r: 4 + Math.random()*6,
+        c: colors[(Math.random()*colors.length)|0],
+        vx: (Math.random()-.5)*4,
+        vy: 2 + Math.random()*4,
+        rot: Math.random()*6.28,
+        vr: (Math.random()-.5)*0.3,
+        sway: Math.random()*6.28
+      });
+    }
+
+    var start = null, DURATION = 4200;
+    function frame(t){
+      if (!start) start = t;
+      var elapsed = t - start;
+      ctx.clearRect(0,0,W,H);
+      var fade = elapsed > DURATION-900 ? Math.max(0,(DURATION-elapsed)/900) : 1;
+      parts.forEach(function(p){
+        p.sway += 0.05;
+        p.x += p.vx + Math.sin(p.sway);
+        p.y += p.vy;
+        p.vy += 0.04;
+        p.rot += p.vr;
+        ctx.save();
+        ctx.globalAlpha = fade;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r*0.5);
+        ctx.restore();
+      });
+      if (elapsed < DURATION) requestAnimationFrame(frame);
+      else { ctx.clearRect(0,0,W,H); cv.remove(); }
+    }
+    requestAnimationFrame(frame);
+  })();
+</script>
+</body>
+</html>
